@@ -19,17 +19,4 @@ export class AuthGuardService implements CanActivate {
       });
     return true;
   }
-
-  canDeactivate(): boolean {
-    console.log('asd')
-    this.auth
-      .getCurrentUser()
-      .valueChanges.subscribe(({ data }: { data: any }) => {
-        if (data && data.me) {
-          this.router.navigate(['/booking']);
-        } else {
-        }
-      });
-    return true;
-  }
 }

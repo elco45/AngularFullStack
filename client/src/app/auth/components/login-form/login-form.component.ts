@@ -27,7 +27,7 @@ export class LoginFormComponent implements OnInit {
         if (data.errors) {
           this.errors = data.errors;
         } else {
-          this.router.navigate(['/booking']);
+          this.router.navigate(['/book']);
         }
       },
       (error) => {

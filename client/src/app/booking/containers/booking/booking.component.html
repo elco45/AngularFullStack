@@ -1,1 +1,42 @@
-<p>booking works!</p>
+<div>
+  <div id="stepProgressBar">
+    <div
+      class="step"
+      *ngFor="let type of currentType; let i = index"
+      (click)="setCurrentStep(i)"
+    >
+      <div
+        class="bullet"
+        [class.completed]="i < step"
+        [class.active]="i == step"
+        [class.inactive]="i > latestStepCompleted"
+      >
+        {{ i + 1 }}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div [ngSwitch]="getCurrentStep()">
+  <div *ngSwitchCase="'duration'">
+    <app-duration
+      [durationInput]="bookingData.duration"
+      (onUpdateBookingData)="nextStep($event)"
+    ></app-duration>
+  </div>
+  <div *ngSwitchCase="'schedule'">
+    <app-schedule (onUpdateBookingData)="nextStep($event)"></app-schedule>
+  </div>
+  <div *ngSwitchCase="'helpers'">
+    <app-helpers (onUpdateBookingData)="nextStep($event)"></app-helpers>
+  </div>
+  <div *ngSwitchCase="'quote'"><app-quote></app-quote></div>
+  <div *ngSwitchCase="'contact'">
+    <app-contact (onUpdateBookingData)="nextStep($event)"></app-contact>
+  </div>
+  <div *ngSwitchCase="'pickup'"><app-pickup></app-pickup></div>
+  <div *ngSwitchCase="'dropoff'"><app-dropoff></app-dropoff></div>
+  <div *ngSwitchCase="'comments'"><app-comments></app-comments></div>
+
+  <div *ngSwitchDefault>Other String</div>
+</div>

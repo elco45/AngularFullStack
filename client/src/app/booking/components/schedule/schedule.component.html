@@ -1,0 +1,20 @@
+<h1>When are we moving?</h1>
+
+<p>What day works best?</p>
+<dp-date-picker
+  [(ngModel)]="selectedDate"
+  [theme]="'dp-material'"
+  [config]="datePickerConfig"
+  (onSelect)="getListOfAvailableTime()"
+></dp-date-picker>
+
+<ng-template [ngIf]="selectedDate">
+  <p>What time works best?</p>
+  <ng-select [(ngModel)]="selectedTime">
+    <ng-option *ngFor="let opt of availableTimes" [value]="opt">{{
+      opt
+    }}</ng-option>
+  </ng-select>
+</ng-template>
+
+<button (click)="nextStep()" [disabled]="!selectedTime">Next</button>
