@@ -1,1 +1,13 @@
-<p>login-form works!</p>
+<input type="text" [(ngModel)]="email" />
+<input type="password" [(ngModel)]="password" />
+
+<button (click)="onLogin()">
+  <ng-template [ngIf]="loading" [ngIfElse]="none">
+    Loading...
+  </ng-template>
+  <ng-template #none>
+    Submit
+  </ng-template>
+</button>
+
+<p>Don't have an account? <a href="/signup">Sign Up here</a></p>

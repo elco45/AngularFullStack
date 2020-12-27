@@ -29,4 +29,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 Cool commands to use:
 * ng g m auth
-* ng g c auth/login -t -s -m=auth.module
+* ng g c auth/login -m=auth.module

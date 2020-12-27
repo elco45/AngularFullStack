@@ -1,0 +1,7 @@
+<ng-template [ngIf]="loading" [ngIfElse]="none"> Loading... </ng-template>
+<ng-template #none>
+  {{ user.name }}
+  <button>Update Profile</button>
+  <button>Change Settings</button>
+  <button (click)="onLogout()">Logout</button>
+</ng-template>
