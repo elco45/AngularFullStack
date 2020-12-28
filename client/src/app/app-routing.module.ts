@@ -8,6 +8,7 @@ import { SignupComponent } from './auth/containers/signup/signup.component';
 import { ProfileComponent } from './auth/containers/profile/profile.component';
 import { BookComponent } from './booking/containers/book/book.component';
 import { BookingComponent } from './booking/containers/booking/booking.component';
+import { PaymentComponent } from './booking/containers/payment/payment.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'get-started', pathMatch: 'full' },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'book', component: BookComponent, canActivate: [AuthGuard] },
   { path: 'booking', component: BookingComponent, canActivate: [AuthGuard] },
+  { path: 'payment', component: PaymentComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({

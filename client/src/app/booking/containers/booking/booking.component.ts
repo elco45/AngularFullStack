@@ -12,11 +12,12 @@ interface BookingData {
   price?: number;
   priceTaxed?: number;
   rideAlong?: boolean;
+  justMates?: boolean;
   type?: string;
 
   selectedDate?: string;
   selectedTime?: string;
-
+  comments?: string;
   dropoffAddress?: string;
   dropoffAddressDetails?: string;
   dropoffFloor?: number;
@@ -28,7 +29,6 @@ const TYPES = {
     'duration',
     'schedule',
     'helpers',
-    // 'contact',
     'pickup',
     'dropoff',
     'comments',
@@ -38,18 +38,11 @@ const TYPES = {
     'comments',
     'schedule',
     'helpers',
-    // 'contact',
     'pickup',
     'dropoff',
     'quote',
   ],
-  SHOP_TYPE: [
-    'comments',
-    // 'contact',
-    'pickup',
-    'dropoff',
-    'quote',
-  ],
+  SHOP_TYPE: ['comments', 'pickup', 'dropoff', 'quote'],
 };
 
 @Component({
@@ -76,6 +69,7 @@ export class BookingComponent implements OnInit {
     delete this.bookingData.dropoffAddressDetails;
     delete this.bookingData.dropoffFloor;
     delete this.bookingData.dropoffHasElevator;
+    delete this.bookingData.comments;
   }
 
   getCurrentStep(): string {
@@ -83,7 +77,7 @@ export class BookingComponent implements OnInit {
       if (this.step < this.currentType.length) {
         return this.currentType[this.step];
       } else {
-        // finished go to guidelines
+        // finished go to guidelines/payments
       }
     }
     return null;

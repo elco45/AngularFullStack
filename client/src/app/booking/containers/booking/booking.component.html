@@ -1,3 +1,36 @@
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/book">Navbar</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNavDropdown"
+      aria-controls="navbarNavDropdown"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <span class="nav-item dropdown">
+      <span
+        class="nav-link dropdown-toggle"
+        id="navbarDropdownMenuLink"
+        role="button"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        Dropdown link
+      </span>
+      <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+        <li><a class="dropdown-item" href="#">Action</a></li>
+        <li><a class="dropdown-item" href="#">Another action</a></li>
+        <li><a class="dropdown-item" href="#">Something else here</a></li>
+      </ul>
+    </span>
+  </div>
+</nav>
+
 <div>
   <div id="stepProgressBar">
     <div
@@ -56,11 +89,17 @@
     ></app-dropoff>
   </div>
   <div *ngSwitchCase="'comments'">
-    <app-comments (onUpdateBookingData)="nextStep($event)"></app-comments>
+    <app-comments
+      [commentsInput]="bookingData.comments"
+      (onUpdateBookingData)="nextStep($event)"
+    ></app-comments>
   </div>
 
   <div *ngSwitchCase="'quote'">
-    <app-quote (onUpdateBookingData)="nextStep($event)"></app-quote>
+    <app-quote
+      [bookingDataInput]="bookingData"
+      (onUpdateBookingData)="nextStep($event)"
+    ></app-quote>
   </div>
 
   <div *ngSwitchDefault>Other String</div>

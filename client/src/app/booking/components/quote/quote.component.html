@@ -1,1 +1,36 @@
-<p>quote works!</p>
+<h1>Here's your quote</h1>
+
+<ng-template [ngIf]="!justMates && !rideAlong">
+  <p>
+    $ {{ ratesPerMate[bookingData.numberOfHelpers] * bookingData.duration }}
+  </p>
+</ng-template>
+<ng-template [ngIf]="rideAlong && bookingData.numberOfHelpers === 1">
+  <p>
+    $
+    {{ ratesPerMate[bookingData.numberOfHelpers] * bookingData.duration + 15 }}
+  </p>
+</ng-template>
+<ng-template [ngIf]="justMates">
+  <p>$ {{ 45 * bookingData.numberOfHelpers * bookingData.duration }}</p>
+</ng-template>
+
+<ng-template [ngIf]="!justMates && bookingData.numberOfHelpers === 1">
+  <input
+    type="checkbox"
+    name="rideAlong"
+    [checked]="rideAlong"
+    (change)="rideAlong = !rideAlong"
+  />
+  <label for="rideAlong">Ride along (Ride with our Mate for $15)</label><br />
+</ng-template>
+
+<ng-template [ngIf]="!rideAlong">
+  <input
+    type="checkbox"
+    name="justMates"
+    [checked]="justMates"
+    (change)="justMates = !justMates"
+  />
+  <label for="justMates">Just the Mates (no truck)</label><br />
+</ng-template>

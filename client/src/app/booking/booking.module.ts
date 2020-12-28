@@ -18,6 +18,7 @@ import { ContactComponent } from './components/contact/contact.component';
 import { PickupComponent } from './components/pickup/pickup.component';
 import { DropoffComponent } from './components/dropoff/dropoff.component';
 import { CommentsComponent } from './components/comments/comments.component';
+import { PaymentComponent } from './containers/payment/payment.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { CommentsComponent } from './components/comments/comments.component';
     PickupComponent,
     DropoffComponent,
     CommentsComponent,
+    PaymentComponent,
   ],
   imports: [
     CommonModule,

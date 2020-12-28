@@ -1,15 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-quote',
   templateUrl: './quote.component.html',
-  styleUrls: ['./quote.component.scss']
+  styleUrls: ['./quote.component.scss'],
 })
 export class QuoteComponent implements OnInit {
+  @Input() bookingDataInput: any;
+  bookingData: any = {};
+  ratesPerMate: any = {
+    1: 80,
+    2: 120,
+    3: 160,
+  };
+  rideAlong: boolean = false;
+  justMates: boolean = false;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
+    this.bookingData = this.bookingDataInput;
+    this.rideAlong = this.bookingDataInput.rideAlong;
+    this.justMates = this.bookingDataInput.justMates;
   }
 
+  
 }
