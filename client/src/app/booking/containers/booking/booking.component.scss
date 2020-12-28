@@ -1,10 +1,16 @@
+$primary-color: #54d1db;
+
 #stepProgressBar {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  width: 300px;
+  width: 360px;
   margin: 0 auto;
   margin-bottom: 40px;
+
+  @media only screen and (max-width: 500px) {
+    width: 300px;
+  }
 }
 
 .step {
@@ -19,13 +25,20 @@
 
 .bullet {
   border: 1px solid #28a745;
-  height: 30px;
-  width: 30px;
+  font-size: 20px;
+  height: 40px;
+  width: 40px;
   border-radius: 100%;
   color: #28a745;
   display: inline-block;
   position: relative;
   transition: background-color 200ms;
+
+  @media only screen and (max-width: 500px) {
+    height: 20px;
+    width: 20px;
+    font-size: 12px;
+  }
 }
 
 .bullet.completed {
@@ -36,10 +49,39 @@
 .bullet.active {
   border: 3px solid #28a745;
   font-weight: bold;
+
+  @media only screen and (max-width: 500px) {
+    border: 1px solid #28a745;
+  }
 }
 
 .bullet.inactive {
   border: 1px solid lightgray;
   color: lightgray;
   cursor: default;
+}
+
+.logo {
+  height: 70px !important;
+}
+
+.nv {
+  padding: 0;
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.09);
+}
+
+.lg {
+  &:hover {
+    font-weight: bold;
+  }
+}
+
+.bg {
+  background-image: url("https://i0.wp.com/movingtips.wpengine.com/wp-content/uploads/2018/02/moving-packing-boxes.jpg?fit=1024%2C683&ssl=1");
+
+  height: 100vh;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }

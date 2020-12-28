@@ -1,1 +1,67 @@
 /* You can add global styles to this file, and also import other style files */
+$primary-color: #54d1db;
+
+body {
+  background: #fff;
+  background-color: transparent;
+  font-family: "Times New Roman", Times, serif;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="number"],
+textarea {
+  display: flex;
+  padding: 8px 10px;
+  margin: 12px 0 !important;
+  min-width: 300px;
+  border: 1px solid $primary-color;
+  outline: none;
+  border-radius: 4px;
+
+  &:focus {
+    box-shadow: 0 0 3pt 1pt #87eaf2;
+  }
+}
+
+.movemate-btn {
+  outline: none;
+  align-self: center;
+  text-align: center;
+  background: $primary-color;
+  border-radius: 10px !important;
+  border: none;
+  color: #fff;
+  margin: 4px 2px;
+  height: 2.8em;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  min-width: 280px;
+
+  &:focus {
+    outline: 0;
+  }
+  &:active {
+    outline: none;
+    border: none;
+  }
+
+  &:disabled,
+  &[disabled] {
+    opacity: 0.5;
+  }
+}
+
+.wrapper {
+  background: rgba(208, 207, 209, 0.9);
+  padding: 5%;
+}
+
+.vertical-center {
+  min-height: 100%;
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+}

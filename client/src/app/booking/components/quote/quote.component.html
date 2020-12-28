@@ -1,36 +1,51 @@
-<h1>Here's your quote</h1>
+<div class="container">
+  <h1>Here's your quote</h1>
 
-<ng-template [ngIf]="!justMates && !rideAlong">
-  <p>
-    $ {{ ratesPerMate[bookingData.numberOfHelpers] * bookingData.duration }}
-  </p>
-</ng-template>
-<ng-template [ngIf]="rideAlong && bookingData.numberOfHelpers === 1">
-  <p>
-    $
-    {{ ratesPerMate[bookingData.numberOfHelpers] * bookingData.duration + 15 }}
-  </p>
-</ng-template>
-<ng-template [ngIf]="justMates">
-  <p>$ {{ 45 * bookingData.numberOfHelpers * bookingData.duration }}</p>
-</ng-template>
+  <div class="price-wrapper">
+    <ng-template [ngIf]="!justMates && !rideAlong">
+      <h1 class="price">
+        $ {{ ratesPerMate[bookingData.numberOfHelpers] * bookingData.duration }}
+        <span class="text-secondary tax"> +tax</span>
+      </h1>
+    </ng-template>
+    <ng-template [ngIf]="rideAlong && bookingData.numberOfHelpers === 1">
+      <h1 class="price">
+        $
+        {{
+          ratesPerMate[bookingData.numberOfHelpers] * bookingData.duration + 15
+        }}
+        <span class="text-secondary tax">+tax</span>
+      </h1>
+    </ng-template>
+    <ng-template [ngIf]="justMates">
+      <h1 class="price">
+        $ {{ 45 * bookingData.numberOfHelpers * bookingData.duration }}
+        <span class="text-secondary tax"> +tax</span>
+      </h1>
+    </ng-template>
+  </div>
 
-<ng-template [ngIf]="!justMates && bookingData.numberOfHelpers === 1">
-  <input
-    type="checkbox"
-    name="rideAlong"
-    [checked]="rideAlong"
-    (change)="rideAlong = !rideAlong"
-  />
-  <label for="rideAlong">Ride along (Ride with our Mate for $15)</label><br />
-</ng-template>
+  <ng-template [ngIf]="!justMates && bookingData.numberOfHelpers === 1">
+    <input
+      type="checkbox"
+      name="rideAlong"
+      [checked]="rideAlong"
+      (change)="rideAlong = !rideAlong"
+    />
+    <label for="rideAlong">Ride along (Ride with our Mate for $15)</label><br />
+  </ng-template>
 
-<ng-template [ngIf]="!rideAlong">
-  <input
-    type="checkbox"
-    name="justMates"
-    [checked]="justMates"
-    (change)="justMates = !justMates"
-  />
-  <label for="justMates">Just the Mates (no truck)</label><br />
-</ng-template>
+  <ng-template [ngIf]="!rideAlong">
+    <input
+      type="checkbox"
+      name="justMates"
+      [checked]="justMates"
+      (change)="justMates = !justMates"
+    />
+    <label for="justMates">Just the Mates (no truck)</label><br />
+  </ng-template>
+
+  <div class="d-flex justify-content-center">
+    <button class="movemate-btn" (click)="nextStep()">Book Mates</button>
+  </div>
+</div>

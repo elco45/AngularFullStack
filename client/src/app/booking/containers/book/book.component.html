@@ -1,5 +1,40 @@
-<h1>Book now</h1>
+<nav class="navbar navbar-expand-md navbar-light bg-white fixed-top nv">
+  <div class="container">
+    <a class="navbar-brand" href="/book"
+      ><img
+        class="logo"
+        src="https://movemate.ca/wp-content/uploads/logomark-full_teal.png"
+    /></a>
+    <span (click)="onLogout()" class="nav-item" style="cursor: pointer">
+      <span class="lg">Logout</span>
+    </span>
+  </div>
+</nav>
 
-<button (click)="onSelectMoveType('MOVE')">Residential Move</button>
-<button (click)="onSelectMoveType('DELIVERY')">Delivery</button>
-<button (click)="onSelectMoveType('SHOP')">Shop</button>
+<div class="bg">
+  <div class="vertical-center">
+    <div class="container d-flex justify-content-center">
+      <div class="wrapper">
+        <h1 class="mb-4">Book now</h1>
+        <div
+          class="move-type-wrapper d-flex justify-content-center"
+          (click)="onSelectMoveType('MOVE')"
+        >
+          Residential Move
+        </div>
+        <div
+          class="move-type-wrapper d-flex justify-content-center"
+          (click)="onSelectMoveType('DELIVERY')"
+        >
+          Delivery
+        </div>
+        <div
+          class="move-type-wrapper d-flex justify-content-center"
+          (click)="onSelectMoveType('SHOP')"
+        >
+          Shop
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

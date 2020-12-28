@@ -1,106 +1,94 @@
-<nav class="navbar navbar-expand-md navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="/book">Navbar</a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarNavDropdown"
-      aria-controls="navbarNavDropdown"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <span class="nav-item dropdown">
-      <span
-        class="nav-link dropdown-toggle"
-        id="navbarDropdownMenuLink"
-        role="button"
-        data-bs-toggle="dropdown"
-        aria-expanded="false"
-      >
-        Dropdown link
-      </span>
-      <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-        <li><a class="dropdown-item" href="#">Action</a></li>
-        <li><a class="dropdown-item" href="#">Another action</a></li>
-        <li><a class="dropdown-item" href="#">Something else here</a></li>
-      </ul>
+<nav class="navbar navbar-expand-md navbar-light bg-white fixed-top nv">
+  <div class="container">
+    <a class="navbar-brand" href="/book"
+      ><img
+        class="logo"
+        src="https://movemate.ca/wp-content/uploads/logomark-full_teal.png"
+    /></a>
+    <span (click)="onLogout()" class="nav-item" style="cursor: pointer">
+      <span class="lg">Logout</span>
     </span>
   </div>
 </nav>
 
-<div>
-  <div id="stepProgressBar">
-    <div
-      class="step"
-      *ngFor="let type of currentType; let i = index"
-      (click)="setCurrentStep(i)"
-    >
-      <div
-        class="bullet"
-        [class.completed]="i < step"
-        [class.active]="i == step"
-        [class.inactive]="i > latestStepCompleted"
-      >
-        {{ i + 1 }}
+<div class="bg">
+  <div class="vertical-center">
+    <div class="container d-flex justify-content-center">
+      <div class="wrapper">
+        <div>
+          <div id="stepProgressBar">
+            <div
+              class="step"
+              *ngFor="let type of currentType; let i = index"
+              (click)="setCurrentStep(i)"
+            >
+              <div
+                class="bullet"
+                [class.completed]="i < step"
+                [class.active]="i == step"
+                [class.inactive]="i > latestStepCompleted"
+              >
+                {{ i + 1 }}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div [ngSwitch]="getCurrentStep()">
+          <div *ngSwitchCase="'duration'">
+            <app-duration
+              [durationInput]="bookingData.duration"
+              (onUpdateBookingData)="nextStep($event)"
+            ></app-duration>
+          </div>
+          <div *ngSwitchCase="'schedule'">
+            <app-schedule
+              [selectedDateInput]="bookingData.selectedDate"
+              [selectedTimeInput]="bookingData.selectedTime"
+              (onUpdateBookingData)="nextStep($event)"
+            ></app-schedule>
+          </div>
+          <div *ngSwitchCase="'helpers'">
+            <app-helpers (onUpdateBookingData)="nextStep($event)"></app-helpers>
+          </div>
+          <div *ngSwitchCase="'contact'">
+            <app-contact (onUpdateBookingData)="nextStep($event)"></app-contact>
+          </div>
+          <div *ngSwitchCase="'pickup'">
+            <app-pickup
+              [pickupAddressInput]="bookingData.pickupAddress"
+              [pickupFloorInput]="bookingData.pickupFloor"
+              [pickupAddressDetailsInput]="bookingData.pickupAddressDetails"
+              [pickupHasElevatorInput]="bookingData.pickupHasElevator"
+              (onUpdateBookingData)="nextStep($event)"
+            ></app-pickup>
+          </div>
+          <div *ngSwitchCase="'dropoff'">
+            <app-dropoff
+              [dropoffAddressInput]="bookingData.dropoffAddress"
+              [dropoffFloorInput]="bookingData.dropoffFloor"
+              [dropoffAddressDetailsInput]="bookingData.dropoffAddressDetails"
+              [dropoffHasElevatorInput]="bookingData.dropoffHasElevator"
+              (onUpdateBookingData)="nextStep($event)"
+            ></app-dropoff>
+          </div>
+          <div *ngSwitchCase="'comments'">
+            <app-comments
+              [commentsInput]="bookingData.comments"
+              (onUpdateBookingData)="nextStep($event)"
+            ></app-comments>
+          </div>
+
+          <div *ngSwitchCase="'quote'">
+            <app-quote
+              [bookingDataInput]="bookingData"
+              (onUpdateBookingData)="nextStep($event)"
+            ></app-quote>
+          </div>
+
+          <div *ngSwitchDefault>Other String</div>
+        </div>
       </div>
     </div>
   </div>
-</div>
-
-<div [ngSwitch]="getCurrentStep()">
-  <div *ngSwitchCase="'duration'">
-    <app-duration
-      [durationInput]="bookingData.duration"
-      (onUpdateBookingData)="nextStep($event)"
-    ></app-duration>
-  </div>
-  <div *ngSwitchCase="'schedule'">
-    <app-schedule
-      [selectedDateInput]="bookingData.selectedDate"
-      [selectedTimeInput]="bookingData.selectedTime"
-      (onUpdateBookingData)="nextStep($event)"
-    ></app-schedule>
-  </div>
-  <div *ngSwitchCase="'helpers'">
-    <app-helpers (onUpdateBookingData)="nextStep($event)"></app-helpers>
-  </div>
-  <div *ngSwitchCase="'contact'">
-    <app-contact (onUpdateBookingData)="nextStep($event)"></app-contact>
-  </div>
-  <div *ngSwitchCase="'pickup'">
-    <app-pickup
-      [pickupAddressInput]="bookingData.pickupAddress"
-      [pickupFloorInput]="bookingData.pickupFloor"
-      [pickupAddressDetailsInput]="bookingData.pickupAddressDetails"
-      [pickupHasElevatorInput]="bookingData.pickupHasElevator"
-      (onUpdateBookingData)="nextStep($event)"
-    ></app-pickup>
-  </div>
-  <div *ngSwitchCase="'dropoff'">
-    <app-dropoff
-      [dropoffAddressInput]="bookingData.dropoffAddress"
-      [dropoffFloorInput]="bookingData.dropoffFloor"
-      [dropoffAddressDetailsInput]="bookingData.dropoffAddressDetails"
-      [dropoffHasElevatorInput]="bookingData.dropoffHasElevator"
-      (onUpdateBookingData)="nextStep($event)"
-    ></app-dropoff>
-  </div>
-  <div *ngSwitchCase="'comments'">
-    <app-comments
-      [commentsInput]="bookingData.comments"
-      (onUpdateBookingData)="nextStep($event)"
-    ></app-comments>
-  </div>
-
-  <div *ngSwitchCase="'quote'">
-    <app-quote
-      [bookingDataInput]="bookingData"
-      (onUpdateBookingData)="nextStep($event)"
-    ></app-quote>
-  </div>
-
-  <div *ngSwitchDefault>Other String</div>
 </div>

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/auth.service';
 
 interface BookingData {
   duration?: number;
@@ -58,7 +60,7 @@ export class BookingComponent implements OnInit {
   bookingData: BookingData =
     JSON.parse(localStorage.getItem('bookingData')) || {};
 
-  constructor() {}
+  constructor(private _authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
     const type = (this.bookingData && this.bookingData.type) || 'MOVE';
@@ -78,6 +80,7 @@ export class BookingComponent implements OnInit {
         return this.currentType[this.step];
       } else {
         // finished go to guidelines/payments
+        this.router.navigate(['payment']);
       }
     }
     return null;
@@ -96,5 +99,16 @@ export class BookingComponent implements OnInit {
     }
     this.bookingData = { ...this.bookingData, ...newData };
     localStorage.setItem('bookingData', JSON.stringify(this.bookingData));
+  }
+
+  onLogout() {
+    this._authService.onLogout().subscribe(
+      () => {
+        this.router.navigate(['/']);
+      },
+      (error) => {
+        console.log('there was an error sending the query', error);
+      }
+    );
   }
 }

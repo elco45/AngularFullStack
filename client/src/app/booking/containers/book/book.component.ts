@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/auth.service';
 
 @Component({
   selector: 'app-book',
@@ -7,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./book.component.scss'],
 })
 export class BookComponent implements OnInit {
-  constructor(private router: Router) {}
+  constructor(private _authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {}
 
@@ -16,5 +17,16 @@ export class BookComponent implements OnInit {
     bookingData = { ...bookingData, type: moveType };
     localStorage.setItem('bookingData', JSON.stringify(bookingData));
     this.router.navigate(['booking']);
+  }
+
+  onLogout() {
+    this._authService.onLogout().subscribe(
+      () => {
+        this.router.navigate(['/']);
+      },
+      (error) => {
+        console.log('there was an error sending the query', error);
+      }
+    );
   }
 }

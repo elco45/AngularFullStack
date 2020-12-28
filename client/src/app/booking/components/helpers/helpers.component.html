@@ -1,3 +1,41 @@
-<div (click)="nextStep(1)">1 Mate</div>
-<div (click)="nextStep(2)">2 Mate</div>
-<div (click)="nextStep(3)">3 Mate</div>
+<div class="container">
+  <div class="d-flex justify-content-center">
+    <div class="mates-wrapper d-flex flex-row" (click)="nextStep(1)">
+      <img
+        class="img-mate"
+        src="https://book.movemate.ca/assets/1-helper.svg"
+      />
+      <div class="d-flex flex-row">
+        <span class="p-1"
+          >1 Mate <span class="p-1 text-secondary">(80$/hour)</span></span
+        >
+      </div>
+    </div>
+  </div>
+  <div class="d-flex justify-content-center">
+    <div class="mates-wrapper d-flex flex-row" (click)="nextStep(2)">
+      <img
+        class="img-mate"
+        src="https://book.movemate.ca/assets/2-helpers.svg"
+      />
+      <div class="d-flex flex-row">
+        <span class="p-1"
+          >2 Mates <span class="p-1 text-secondary">(120$/hour)</span></span
+        >
+      </div>
+    </div>
+  </div>
+  <div class="d-flex justify-content-center">
+    <div class="mates-wrapper d-flex flex-row" (click)="nextStep(3)">
+      <img
+        class="img-mate"
+        src="https://book.movemate.ca/assets/3-helpers.svg"
+      />
+      <div class="d-flex flex-row">
+        <span class="p-1"
+          >3 Mates <span class="p-1 text-secondary">(160$/hour)</span></span
+        >
+      </div>
+    </div>
+  </div>
+</div>

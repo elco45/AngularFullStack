@@ -29,6 +29,7 @@
     "graphql": "^15.4.0",
     "graphql-tag": "^2.11.0",
     "jquery": "^3.5.1",
+    "lodash.startcase": "^4.4.0",
     "moment": "^2.29.1",
     "ng2-date-picker": "^11.0.0",
     "rxjs": "~6.6.0",

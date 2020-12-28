@@ -1,13 +1,13 @@
-<input type="text" [(ngModel)]="email" />
-<input type="password" [(ngModel)]="password" />
+<input type="text" [(ngModel)]="email" placeholder="Your email address" />
+<input type="password" [(ngModel)]="password" placeholder="Your password" />
 
-<button (click)="onLogin()">
-  <ng-template [ngIf]="loading" [ngIfElse]="none">
-    Loading...
-  </ng-template>
-  <ng-template #none>
-    Submit
-  </ng-template>
-</button>
+<div class="d-flex justify-content-center mb-5 mt-4">
+  <button class="movemate-btn" (click)="onLogin()">
+    <ng-template [ngIf]="loading" [ngIfElse]="none"> Loading... </ng-template>
+    <ng-template #none> Submit </ng-template>
+  </button>
+</div>
 
 <p>Don't have an account? <a href="/signup">Sign Up here</a></p>
+
+<p><a href="/signup">Or connect with social media</a></p>

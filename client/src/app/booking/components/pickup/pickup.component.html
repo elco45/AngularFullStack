@@ -1,28 +1,45 @@
-<p>Pickup Location</p>
-<input type="text" [(ngModel)]="pickupAddress" />
+<div class="container">
+  <p>Pickup Location</p>
+  <div class="d-flex justify-content-center">
+    <input type="text" [(ngModel)]="pickupAddress" />
+  </div>
 
-<ng-template [ngIf]="pickupAddress">
-  <p>Apt, suite, etc. (optional)</p>
-  <input type="text" [(ngModel)]="pickupAddressDetails" />
+  <ng-template [ngIf]="pickupAddress">
+    <p>Apt, suite, etc. (optional)</p>
+    <div class="d-flex justify-content-center">
+      <input type="text" [(ngModel)]="pickupAddressDetails" />
+    </div>
 
-  <input
-    type="checkbox"
-    name="hasElevator"
-    [checked]="pickupHasElevator"
-    (change)="pickupHasElevator = !pickupHasElevator"
-  />
-  <label for="hasElevator">There is an elevator at this location</label><br />
+    <div class="d-flex justify-content-center">
+      <input
+        type="checkbox"
+        name="hasElevator"
+        [checked]="pickupHasElevator"
+        (change)="pickupHasElevator = !pickupHasElevator"
+      />
+      <label for="hasElevator">There is an elevator at this location</label
+      ><br />
+    </div>
 
-  <ng-template [ngIf]="pickupHasElevator" [ngIfElse]="none">
-    <p>
-      Please make sure to reserve the elevator for the duration of the move.
-    </p>
+    <ng-template [ngIf]="pickupHasElevator" [ngIfElse]="none">
+      <p>
+        Please make sure to reserve the elevator for the duration of the move.
+      </p>
+    </ng-template>
+    <ng-template #none>
+      <div class="d-flex justify-content-center">
+        <input type="number" min="1" max="100" [(ngModel)]="pickupFloor" />
+      </div>
+    </ng-template>
   </ng-template>
-  <ng-template #none>
-    <input type="number" min="1" max="100" [(ngModel)]="pickupFloor" />
-  </ng-template>
-</ng-template>
 
-<button (click)="nextStep()" [disabled]="!pickupAddress">
-  Next
-</button>
+  <div class="d-flex justify-content-center">
+    <button
+      class="movemate-btn"
+      (click)="nextStep()"
+      [disabled]="!pickupAddress"
+    >
+      Next
+    </button>
+  </div>
+</div>

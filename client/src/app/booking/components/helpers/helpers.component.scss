@@ -1,0 +1,20 @@
+$primary-color: #54d1db;
+
+.mates-wrapper {
+  background: #fff;
+  border-radius: 10px;
+  border: 3px solid $primary-color;
+  min-width: 280px;
+  cursor: pointer;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+.img-mate {
+  height: 40px;
+  max-width: 40px;
+  margin-left: 1em;
+  margin-right: 1em;
+}

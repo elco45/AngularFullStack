@@ -1,6 +1,15 @@
-<h1>Items to move</h1>
-<p>Items to move</p>
+<div class="container">
+  <h1>Items to move</h1>
 
-<textarea [(ngModel)]="comments" rows="4"></textarea>
+  <div class="d-flex justify-content-center">
+    <textarea
+      [(ngModel)]="comments"
+      placeholder="- Sofa, 35 inches x 84 inches, need to protect borders"
+      rows="4"
+    ></textarea>
+  </div>
 
-<button (click)="nextStep()">Next</button>
+  <div class="d-flex justify-content-center">
+    <button class="movemate-btn" (click)="nextStep()">Next</button>
+  </div>
+</div>
