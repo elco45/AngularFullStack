@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import moment from 'moment';
 
 @Component({
@@ -8,6 +8,8 @@ import moment from 'moment';
 })
 export class ScheduleComponent implements OnInit {
   @Output() onUpdateBookingData: EventEmitter<any> = new EventEmitter();
+  @Input() selectedDateInput: string;
+  @Input() selectedTimeInput: string;
 
   selectedDate: moment.Moment = null;
   selectedTime: string = null;
@@ -19,7 +21,13 @@ export class ScheduleComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.selectedDateInput) {
+      this.selectedDate = moment(this.selectedDateInput);
+      this.selectedTime = this.selectedTimeInput;
+      this.getListOfAvailableTime();
+    }
+  }
 
   getListOfAvailableTime() {
     if (this.selectedDate) {
@@ -44,10 +52,10 @@ export class ScheduleComponent implements OnInit {
   }
 
   nextStep() {
-    const today = moment().startOf('D');
-    if (this.selectedDate.startOf('D').isSameOrAfter(today)) {
+    const today = moment().endOf('D');
+    if (this.selectedDate.endOf('D').isSameOrAfter(today)) {
       this.onUpdateBookingData.emit({
-        selectedDate: this.selectedDate,
+        selectedDate: this.selectedDate.toISOString(),
         selectedTime: this.selectedTime,
       });
     }

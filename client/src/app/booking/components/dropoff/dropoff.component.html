@@ -1,1 +1,26 @@
-<p>dropoff works!</p>
+<p>Dropoff Location</p>
+<input type="text" [(ngModel)]="dropoffAddress" />
+
+<ng-template [ngIf]="dropoffAddress">
+  <p>Apt, suite, etc. (optional)</p>
+  <input type="text" [(ngModel)]="dropoffAddressDetails" />
+
+  <input
+    type="checkbox"
+    name="hasElevator"
+    [checked]="dropoffHasElevator"
+    (change)="dropoffHasElevator = !dropoffHasElevator"
+  />
+  <label for="hasElevator">There is an elevator at this location</label><br />
+
+  <ng-template [ngIf]="dropoffHasElevator" [ngIfElse]="none">
+    <p>
+      Please make sure to reserve the elevator for the duration of the move.
+    </p>
+  </ng-template>
+  <ng-template #none>
+    <input type="number" min="1" max="100" [(ngModel)]="dropoffFloor" />
+  </ng-template>
+</ng-template>
+
+<button (click)="nextStep()" [disabled]="!dropoffAddress">Next</button>

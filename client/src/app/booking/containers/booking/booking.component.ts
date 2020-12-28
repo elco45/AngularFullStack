@@ -16,6 +16,11 @@ interface BookingData {
 
   selectedDate?: string;
   selectedTime?: string;
+
+  dropoffAddress?: string;
+  dropoffAddressDetails?: string;
+  dropoffFloor?: number;
+  dropoffHasElevator?: boolean;
 }
 
 const TYPES = {
@@ -63,9 +68,14 @@ export class BookingComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    console.log(this.bookingData);
     const type = (this.bookingData && this.bookingData.type) || 'MOVE';
     this.currentType = TYPES[`${type}_TYPE`];
+    delete this.bookingData.selectedDate;
+    delete this.bookingData.selectedTime;
+    delete this.bookingData.dropoffAddress;
+    delete this.bookingData.dropoffAddressDetails;
+    delete this.bookingData.dropoffFloor;
+    delete this.bookingData.dropoffHasElevator;
   }
 
   getCurrentStep(): string {
@@ -91,7 +101,6 @@ export class BookingComponent implements OnInit {
       this.latestStepCompleted = this.step;
     }
     this.bookingData = { ...this.bookingData, ...newData };
-    console.log(this.bookingData);
     localStorage.setItem('bookingData', JSON.stringify(this.bookingData));
   }
 }
